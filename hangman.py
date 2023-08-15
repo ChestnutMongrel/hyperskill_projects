@@ -1,5 +1,9 @@
+from random import choice
+
+
 def guess_word() -> None:
-    word = 'python'
+    dictionary = ('python', 'java', 'swift', 'javascript')
+    word = choice(dictionary)
     user_guess = input('Guess the word: ')
 
     print('You survived!' if word == user_guess else 'You lost!')
