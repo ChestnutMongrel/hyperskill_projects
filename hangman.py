@@ -58,7 +58,6 @@ def test_make_hint() -> None:
 
 def print_title() -> None:
     print('H A N G M A N')
-    print()
 
 
 def main() -> None:
@@ -69,18 +68,28 @@ def main() -> None:
     attempts = 8
 
     while attempts:
+        print()
         print(hint)
+        
+        if hint == word:
+            print('You guessed the word!')
+            print('You survived!')
+            break
+            
         letter = get_letter()
 
         if letter not in word:
             print("That letter doesn't appear in the word.")
-        else:
+        elif letter in hint:  # That letter was already used before.
+            print('No improvements.')
+        else:  # The letter is new and is in the word.
+            attempts += 1  # Adding to overcome subtraction later.
             hint = make_hint(word, hint, letter)
 
-        print()
         attempts -= 1
 
-    print('Thanks for playing!')
+    else:
+        print('You lost!')
 
 
 if __name__ == '__main__':
